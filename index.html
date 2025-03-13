@@ -3,243 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malaika Care - Premium Wellness & Beauty</title>
+    <title>Malaika Care - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #6C3483;
-            --secondary: #D2B4DE;
-            --accent: #A569BD;
+        /* Your original CSS with enhancements */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f4fc;
+            color: #4a235a;
         }
 
-        /* Enhanced Header */
-        .sticky-header {
+        /* Sticky Navigation */
+        .sticky-nav {
             position: sticky;
             top: 0;
             background: rgba(255, 255, 255, 0.95);
-            z-index: 1000;
+            padding: 15px 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
         }
 
-        .cart-counter {
-            background: var(--accent);
+        .cart-icon {
+            position: relative;
+            font-size: 1.2em;
+        }
+
+        .cart-count {
+            background: #a569bd;
             color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            margin-left: 10px;
+            padding: 2px 8px;
+            border-radius: 50%;
+            font-size: 0.8em;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+
+        .hero {
+            background: url('malaika-images/hero-image.png') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: -60px; /* Offset sticky nav height */
+        }
+
+        .hero-content {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 20px;
+        }
+
+        .cta-button {
+            background: #a569bd;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
         }
 
         /* Enhanced Product Cards */
-        .product-card {
-            transition: transform 0.3s ease;
+        .product-card, .category-card {
             position: relative;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            transition: transform 0.3s ease;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
         }
 
-        .product-actions {
+        .product-info {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .product-card:hover .product-actions {
-            opacity: 1;
-        }
-
-        .quick-view {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 15px;
             color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            cursor: pointer;
         }
 
-        /* Advanced Features */
-        .price-tag {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: #27ae60;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
+        .product-price {
             font-weight: bold;
+            margin: 5px 0;
         }
 
-        .discount-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #e74c3c;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9em;
+        /* Your original grid styles maintained */
+        .product-grid, .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        @media (max-width: 992px) {
+            .product-grid, .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid, .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid, .category-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Enhanced Testimonials */
         .testimonial-card {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-            margin: 10px;
+            margin: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
-        .rating-stars {
-            color: #f1c40f;
-            margin: 10px 0;
-        }
-
-        /* Newsletter Form */
-        .newsletter-form {
+        .testimonial-author {
             display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
+            align-items: center;
+            margin-top: 15px;
         }
 
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Enhanced Newsletter */
         .newsletter input[type="email"] {
-            padding: 10px;
-            border: 2px solid var(--primary);
-            border-radius: 5px;
+            padding: 12px 20px;
+            border: 2px solid #a569bd;
+            border-radius: 25px;
             width: 300px;
+            margin-right: 10px;
         }
 
-        /* Add these new styles below existing media queries */
-        .product-info {
-            padding: 15px;
-            text-align: left;
+        .newsletter button {
+            padding: 12px 25px;
+            background: #a569bd;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        .product-title {
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--primary);
+        .newsletter button:hover {
+            background: #8e44ad;
         }
 
-        .product-price {
-            color: #27ae60;
-            font-size: 1.1em;
-        }
-
-        .original-price {
-            text-decoration: line-through;
-            color: #95a5a6;
-            margin-left: 10px;
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #4a235a;
+            color: white;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <!-- Sticky Header -->
-    <header class="sticky-header">
-        <div class="nav-container">
-            <h1>Malaika Care</h1>
-            <nav>
-                <a href="#shop">Shop</a>
-                <a href="#categories">Categories</a>
-                <a href="#cart"><i class="fas fa-shopping-cart"></i><span class="cart-counter">0</span></a>
-            </nav>
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav">
+        <h2>Malaika Care</h2>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
         </div>
-    </header>
+    </nav>
 
-    <!-- Enhanced Hero Section -->
-    <section class="hero">
+    <header class="hero">
         <div class="hero-content">
             <h1>Luxury Wellness & Beauty</h1>
-            <p>Free Shipping on Orders Over ₦50,000</p>
-            <a href="#shop" class="cta-button">New Arrivals →</a>
+            <p>Discover premium skincare, wellness, and para-pharma products.</p>
+            <a href="#shop" class="cta-button">Shop Now</a>
         </div>
-    </section>
-
-    <!-- Updated Product Grid -->
+    </header>
+    
+    <!-- Enhanced Product Grid -->
     <section class="featured-products" id="shop">
         <h2>Featured Products</h2>
         <div class="product-grid">
             <div class="product-card">
-                <div class="discount-badge">25% OFF</div>
-                <div class="quick-view">Quick View</div>
                 <img src="malaika-images/item-1.png" alt="Product">
                 <div class="product-info">
-                    <h3 class="product-title">Premium Face Cream</h3>
-                    <div class="rating-stars">
+                    <div class="product-price">₦15,000</div>
+                    <div class="product-rating">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <p class="product-price">₦15,000 <span class="original-price">₦20,000</span></p>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i></button>
-                    <button class="wishlist"><i class="far fa-heart"></i></button>
                 </div>
             </div>
-            <!-- Repeat similar structure for other products -->
+            <div class="product-card">
+                <img src="malaika-images/item-2.png" alt="Product">
+                <div class="product-info">
+                    <div class="product-price">₦15,000</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="malaika-images/item-1.png" alt="Product">
+                <div class="product-info">
+                    <div class="product-price">₦15,000</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="malaika-images/item-2.png" alt="Product">
+                <div class="product-info">
+                    <div class="product-price">₦15,000</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat for other products -->
         </div>
     </section>
 
-    <!-- Enhanced Newsletter Section -->
+    <!-- Enhanced Categories -->
+    <section class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="malaika-images/item-1.png" alt="Skincare">
+                <div class="category-title">Skincare</div>
+            </div>
+<div class="category-card">
+                <img src="malaika-images/item-2.png" alt="Skincare">
+                <div class="category-title">Skincare</div>
+            </div>
+            <div class="category-card">
+                <img src="malaika-images/item-1.png" alt="Skincare">
+                <div class="category-title">Skincare</div>
+            </div>
+            <div class="category-card">
+                <img src="malaika-images/item-2.png" alt="Skincare">
+                <div class="category-title">Skincare</div>
+            </div>
+            <!-- Repeat for other categories -->
+        </div>
+    </section>
+
+    <!-- Enhanced Testimonials -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-card">
+            <p>"Amazing products! My skin feels great."</p>
+            <div class="testimonial-author">
+                <img src="malaika-images/user-avatar.jpg" class="author-avatar" alt="Customer">
+                <div>
+                    <div class="author-name">Amina Bello</div>
+                    <div class="author-role">Beauty Blogger</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Newsletter -->
     <section class="newsletter">
-        <h2>Join Our Wellness Community</h2>
-        <p>Get exclusive offers + 15% off your first order</p>
-        <div class="newsletter-form">
-            <input type="email" placeholder="Your best email..." required>
-            <button class="cta-button">Subscribe</button>
-        </div>
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for the latest deals.</p>
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
     </section>
-
-    <!-- Enhanced Footer -->
+    
     <footer>
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Customer Care</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Shipping Policy</a></li>
-                    <li><a href="#">Returns & Exchanges</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
+        <p>&copy; 2025 Malaika Care. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
     </footer>
 
     <script>
-        // Basic Cart Functionality
+        // Simple Cart Counter
         let cartCount = 0;
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', () => {
+        const cartElements = document.querySelectorAll('.product-card');
+        
+        cartElements.forEach(card => {
+            card.addEventListener('click', () => {
                 cartCount++;
-                document.querySelector('.cart-counter').textContent = cartCount;
-                button.classList.add('added');
-                setTimeout(() => button.classList.remove('added'), 1000);
+                document.querySelector('.cart-count').textContent = cartCount;
             });
         });
     </script>
