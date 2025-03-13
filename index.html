@@ -37,17 +37,44 @@
         }
         .product-grid, .category-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    width: 100%; /* Ensure grid takes full width */
         }
         .product-card, .category-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative; /* For image positioning */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Keep image within card */
+    aspect-ratio: 1/1; /* Maintain square ratio (optional) */
         }
+        .product-card img, .category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevent image distortion */
+    display: block; /* Remove default image spacing */
+}
+
+        @media (max-width: 992px) {
+    .product-grid, .category-card {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid, .category-card {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid, .category-card {
+        grid-template-columns: 1fr;
+    }
+}
+        
         .special-offers, .testimonials, .newsletter {
             text-align: center;
             padding: 40px;
@@ -73,20 +100,28 @@
     <section class="featured-products" id="shop">
         <h2>Featured Products</h2>
         <div class="product-grid">
-            <div class="product-card"><img src="malaika-images/item-1.png"></div>
-            <div class="product-card"><img src="malaika-images/item-2.png"></div>
-            <div class="product-card"><img src="malaika-images/item-1.png"></div>
-            <div class="product-card"><img src="malaika-images/item-2.png"></div>
-        </div>
+    <div class="product-card">
+        <img src="malaika-images/item-1.png" alt="Product">
+    </div>
+    <div class="product-card">
+        <img src="malaika-images/item-2.png" alt="Product">
+    </div>
+    <div class="product-card">
+        <img src="malaika-images/item-1.png" alt="Product">
+    </div>
+    <div class="product-card">
+        <img src="malaika-images/item-2.png" alt="Product">
+    </div>
+</div>
     </section>
     
     <section class="categories">
         <h2>Shop by Category</h2>
         <div class="category-grid">
-            <div class="category-card">Skincare <br/> <img src="malaika-images/item-1.png"> </div>
-            <div class="category-card">Supplements <br/> <img src="malaika-images/item-2.png"> </div>
-            <div class="category-card">Personal Care <br/> <img src="malaika-images/item-1.png"> </div>
-            <div class="category-card">Wellness <br/> <img src="malaika-images/item-2.png"> </div>
+            <div class="category-card">Skincare <br/> <img src="malaika-images/item-1.png" alt="Product"> </div>
+            <div class="category-card">Supplements <br/> <img src="malaika-images/item-2.png" alt="Product"> </div>
+            <div class="category-card">Personal Care <br/> <img src="malaika-images/item-1.png" alt="Product"> </div>
+            <div class="category-card">Wellness <br/> <img src="malaika-images/item-2.png" alt="Product"> </div>
         </div>
     </section>
     
